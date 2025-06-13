@@ -1,4 +1,5 @@
 from flask import Flask, request, jsonify
+from flask_cors import CORS
 from tensorflow.keras.models import load_model
 import numpy as np
 from PIL import Image
@@ -13,7 +14,7 @@ MODEL_PATH = 'meowid_model.h5'
 def download_model():
     if not os.path.exists(MODEL_PATH):
         print("Downloading model...")
-        file_id = '1rp1tjByE4tVFF00kiKGWVvyPPYDjrs61'
+        file_id = '1rp1tjByE4tVFF00kiKGWVvyPPYDjrs61' 
         url = f"https://drive.google.com/uc?export=download&id={file_id}"
         response = requests.get(url, allow_redirects=True)
         if response.status_code == 200:
@@ -64,6 +65,7 @@ def predict():
         return jsonify({'error': str(e)}), 500
 
 if __name__ == '__main__':
+    CORS(app)
     import os
     port = int(os.environ.get('PORT', 5000))
     app.run(debug=True, host='0.0.0.0', port=port)
