@@ -1,0 +1,13 @@
+# Ignore virtual env
+venv/
+
+# Ignore model file besar
+*.h5
+
+# Ignore Python cache
+__pycache__/
+*.pyc
+
+# Ignore system junk
+.DS_Store
+Thumbs.db
